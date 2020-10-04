@@ -40,17 +40,21 @@ const quizData = [
         correct: 'b'
     },
 ];
+const answersEls = document.querySelectorAll(".answer");
+const quiz = document.getElementById("quiz");
 const questionEl = document.getElementById("question");
 const a_text = document.getElementById("a_text");
 const b_text = document.getElementById("b_text");
 const c_text = document.getElementById("c_text");
 const d_text = document.getElementById("d_text");
 const submitBtn =document.getElementById("submitBtn");
-let currentQuestion = 0;
 
+let currentQuestion = 0;
+let score=0;
 loadQuiz();
 
 function loadQuiz(){
+    deselectAnswers();
     const currentQuiz = quizData[currentQuestion];
     questionEl.innerHTML = currentQuiz['question'];
     a_text.innerHTML = currentQuiz['a'];
@@ -59,13 +63,35 @@ function loadQuiz(){
     d_text.innerHTML = currentQuiz['d'];
 }
 
+function getSelected() {
+    let answer = undefined;
+    answersEls.forEach((answerEl) => {
+        if(answerEl.checked) {
+            answer = answerEl.id;
+        }
+    });
+    return answer;
+}
+
+function deselectAnswers(){
+    answersEls.forEach((answerEl) => {
+        answerEl.checked = false;
+    });
+}
 submitBtn.addEventListener('click', ()=>{
-    currentQuestion++;
-    if (currentQuestion < quizData) {
-        loadQuiz();
+    let answer = getSelected();
+    console.log(answer);
+    if(answer){
+        if(answer === quizData[currentQuestion].correct)
+        {
+            score++;
+        }
+        currentQuestion++;
+        if (currentQuestion < quizData.length) {
+            loadQuiz();
+        }
+        else{
+            quiz.innerHTML =`<h2>You answerd correctly at ${score}/${quizData.length} questions</h2>`;
+        }
     }
-    else{
-        alert("Bạn đã chơi xong, vui lòng chơi lại");
-    }
-    
 });
