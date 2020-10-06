@@ -40,6 +40,7 @@ const quizData = [
         correct: 'b'
     },
 ];
+
 const answersEls = document.querySelectorAll(".answer");
 const quiz = document.getElementById("quiz");
 const questionEl = document.getElementById("question");
@@ -78,20 +79,22 @@ function deselectAnswers(){
         answerEl.checked = false;
     });
 }
+
 submitBtn.addEventListener('click', ()=>{
     let answer = getSelected();
     console.log(answer);
     if(answer){
         if(answer === quizData[currentQuestion].correct)
         {
-            score++;
+            score++;  
         }
-        currentQuestion++;
-        if (currentQuestion < quizData.length) {
-            loadQuiz();
-        }
-        else{
-            quiz.innerHTML =`<h2>You answerd correctly at ${score}/${quizData.length} questions</h2>`;
-        }
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuiz();
+            }
+            else{
+                quiz.innerHTML =`<h2>You answer correctly at ${score}/${quizData.length} questions</h2> <button onclick="location.reload()">Reload</button>`;
+            }
+        
     }
 });
