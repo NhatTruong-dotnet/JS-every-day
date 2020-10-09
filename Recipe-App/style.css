@@ -5,6 +5,29 @@
 }
 
 body{
+    background: #ece9e9;
+    background: -webkit-linear-gradient(to right, #ffffff, #ece9e6);
+    background: linear-gradient(to right, #ffffff, #ece9e6);
     font-family: 'Nunito', Courier, monospace;
     margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    min-height: 100vh;
+}
+.mobile-container{
+    width: 400px;
+}
+
+img{
+    max-width: 100%;
+}
+
+header{
+    display:flex;
+    padding:1rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
 }
