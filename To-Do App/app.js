@@ -1,5 +1,4 @@
 
-
 class Note{
     constructor(title, content){
         this.title = title;
@@ -45,12 +44,6 @@ function addNote(){
     //Get the form value
     const title = document.querySelector('#title').value;
     const content = document.querySelector('#content').value;
-    
-    //validate
-    if(title ==='' || content ===''){
-        alert('Vui lòng điền đầy đủ thông tin');
-    }
-    else{
         //instance note
         const note = new Note(title,content);
         //add note to UI
@@ -59,8 +52,7 @@ function addNote(){
         Store.addNote(note);
         //clear fields already submit before
         UI.clearFields();
-        alert('Thành công');
-    }
+
     
 };
 const noteList = document.querySelector("#note-list");
